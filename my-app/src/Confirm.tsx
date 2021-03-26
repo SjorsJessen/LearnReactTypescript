@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, {useState} from "react";
 import "./Confirm.css"
 
 interface IProps{
@@ -11,14 +11,31 @@ interface IProps{
     onCancelClick: () => void;
 }
 
+
 const Confirm: React.FC<IProps> = (props) =>{
+    console.log("Confirm component rendering!");
+    
+    const[cancelClickCount, setCancelClickCount] = useState(0);
+    
+    
+    
+    React.useEffect(() => {
+        console.log("Confirm first rendering");
+        return () => {
+            console.log("Confirm unmounted");
+        };
+    }, []);
     
     const handleConfirmClick = () => {
         props.onConfirmClick();
     }
 
     const handleCancelClick = () => {
-        props.onCancelClick();
+        const newCount = cancelClickCount + 1;
+        setCancelClickCount(newCount);
+        if (newCount >= 2) {
+            props.onCancelClick();
+        }
     }
     
     return (
@@ -31,7 +48,9 @@ const Confirm: React.FC<IProps> = (props) =>{
                     <p>{props.content}</p>
                 </div>
                 <div className="confirm-buttons-container">
-                    <button onClick={handleCancelClick} className="confirm-cancel">{props.cancelCaption}</button>
+                    <button onClick={handleCancelClick} className="confirm-cancel">
+                        {cancelClickCount === 0 ? props.cancelCaption : "Really?"}
+                    </button>
                     <button onClick={handleConfirmClick} className="confirm-ok">{props.confirmCaption}</button>
                 </div>
             </div>
@@ -44,4 +63,5 @@ Confirm.defaultProps = {
     confirmCaption: "Confirm"
 }
 
-export default Confirm;
+const ConfirmMemo = React.memo(Confirm);
+export default ConfirmMemo;

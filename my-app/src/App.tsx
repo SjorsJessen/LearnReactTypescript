@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Confirm from "./Confirm";
+import ConfirmMemo from "./Confirm";
 
 interface IState{
     confirmDialogOpen: boolean;
@@ -25,24 +26,24 @@ class App extends React.Component<{}, IState> {
     }
 
     public static getDerivedStateFromProps(props: {}, state: IState) {
-        console.log("getDerivedStateFromProps", props, state);
+        // console.log("getDerivedStateFromProps", props, state);
         return null;
     }
 
     public shouldComponentUpdate(nextProps: {}, nextState: IState)
     {
-        console.log("shouldComponentUpdate", nextProps, nextState);
+        // console.log("shouldComponentUpdate", nextProps, nextState);
         return true;
     }
     
     public getSnapshotBeforeUpdate(prevProps: {}, prevState: IState) {
         this.renderCount += 1;
-        console.log("getSnapshotBeforeUpdate", prevProps, prevState, {renderCount: this.renderCount});
+        // console.log("getSnapshotBeforeUpdate", prevProps, prevState, {renderCount: this.renderCount});
         return this.renderCount;
     }
     
     public componentDidUpdate(prevProps: {}, prevState: IState, snapshot: number) {
-        console.log("componentDidUpdate", prevProps, prevState, snapshot, {renderCount: this.renderCount});
+        // console.log("componentDidUpdate", prevProps, prevState, snapshot, {renderCount: this.renderCount});
     }
     
     public componentDidMount() {
@@ -111,14 +112,17 @@ class App extends React.Component<{}, IState> {
               </header>
               <p>{this.state.confirmMessage}</p>
               {this.state.confirmVisible && (<button onClick={this.handleOpenDialogClick}>Confirm</button>)}
-              <Confirm 
-                  open={this.state.confirmDialogOpen}
-                  title="This is where our title should go" 
-                  content="This is where our content should go" 
-                  confirmCaption="Yes, please!"
-                  onConfirmClick={this.handleConfirmClick}
-                  onCancelClick={this.handleCancelClick}
-              />
+              {this.state.countDown > 0 &&
+              (  
+                  <ConfirmMemo
+                      open={this.state.confirmDialogOpen}
+                      title="This is where our title should go"
+                      content="This is where our content should go"
+                      confirmCaption="Yes, please!"
+                      onConfirmClick={this.handleConfirmClick}
+                      onCancelClick={this.handleCancelClick}
+                  />
+              )}
           </div>
         )
     }
