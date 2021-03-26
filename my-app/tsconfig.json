@@ -1,4 +1,17 @@
 {
+  "rules": {
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-debugger": false,
+    "no-console": false,
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  },
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -22,5 +35,5 @@
   },
   "include": [
     "src"
-  ]
+  ],
 }
