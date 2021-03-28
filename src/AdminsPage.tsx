@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import { NavLink, Route, RouteComponentProps } from "react-router-dom";
 
+
 const AdminPage: React.FC = () => {
     return (
         <div className="page-container">
