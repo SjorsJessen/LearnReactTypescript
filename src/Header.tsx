@@ -1,16 +1,16 @@
 ﻿import React from "react";
-import { NavLink, RouteComponentProps, withRouter} from "react-router-dom";
+import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
 import "url-search-params-polyfill";
 
 import logo from "./logo.svg";
 
 const Header: React.FC<RouteComponentProps> = props => {
     const [search, setSearch] = React.useState("");
-    
+
     React.useEffect(() => {
         const searchParams = new URLSearchParams(props.location.search);
         setSearch(searchParams.get("search") || "");
-    }, []);
+    }, [props.location.search]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value);
@@ -21,8 +21,8 @@ const Header: React.FC<RouteComponentProps> = props => {
             props.history.push(`/products?search=${search}`);
         }
     };
-    
-    
+
+
     return (
         <header className="header">
             <div className="search-container">

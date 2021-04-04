@@ -1,10 +1,10 @@
 ﻿import React from "react";
-import {IProduct, products} from "./ProductsData";
+import { IProduct, products } from "./ProductsData";
 import { Link, RouteComponentProps } from "react-router-dom";
 import "url-search-params-polyfill";
 
-interface IState{
-    products: IProduct[]
+interface IState {
+    products: IProduct[];
     search: string;
 }
 
@@ -29,7 +29,7 @@ class ProductsPage extends React.Component<RouteComponentProps, IState>{
             search
         };
     }
-    
+
     public render() {
         return (
             <div className="page-container">
@@ -45,8 +45,7 @@ class ProductsPage extends React.Component<RouteComponentProps, IState>{
                         ) {
                             return (
                                 <li key={product.id} className="product-list-item">
-                                    <Link to={`/products/${product.id}`}>{product.name}
-                                    </Link>
+                                    <Link to={`/products/${product.id}`}>{product.name}</Link>
                                 </li>
                             );
                         } else { return null; }

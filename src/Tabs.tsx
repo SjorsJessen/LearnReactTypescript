@@ -11,7 +11,7 @@ interface IState {
     activeContent: React.ReactNode;
 }
 
-class Tabs extends React.Component<{ }, IState> {
+class Tabs extends React.Component<{}, IState> {
     public static Tab: React.FC<ITabProps> = props => (
         <TabsContext.Consumer>
             {(context: ITabsContext) => {
@@ -22,8 +22,7 @@ class Tabs extends React.Component<{ }, IState> {
                     }
                 }
                 const activeName = context.activeName ? context.activeName : props.initialActive ? props.name : "";
-                const handleTabClick = (e: React.MouseEvent<HTMLLIElement>) =>
-                {
+                const handleTabClick = (e: React.MouseEvent<HTMLLIElement>) => {
                     if (context.handleTabClick) {
                         context.handleTabClick(props.name, props.children);
                     }
@@ -40,11 +39,11 @@ class Tabs extends React.Component<{ }, IState> {
     private handleTabClick = (name: string, content: React.ReactNode) => {
         this.setState({ activeName: name, activeContent: content });
     };
-    
+
     public render() {
         return (
-            <TabsContext.Provider 
-                value={{activeName: this.state ? this.state.activeName : "", handleTabClick: this.handleTabClick}}
+            <TabsContext.Provider
+                value={{ activeName: this.state ? this.state.activeName : "", handleTabClick: this.handleTabClick }}
             >
                 <ul className="tabs">{this.props.children}</ul>
                 <div>{this.state && this.state.activeContent}</div>

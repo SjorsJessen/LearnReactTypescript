@@ -1,7 +1,6 @@
-﻿import React, {useState} from "react";
+﻿import React from "react";
 
 const LoginPage: React.FC = () => {
-
     return (
         <div className="page-container">
             <h1>Login</h1>

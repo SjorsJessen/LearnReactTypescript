@@ -56,4 +56,5 @@ class ProductPage extends React.Component<Props, IState> {
         );
     }
 }
+
 export default ProductPage;

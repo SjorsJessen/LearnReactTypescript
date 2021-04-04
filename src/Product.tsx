@@ -11,16 +11,16 @@ interface IProps {
 
 const Product: React.FC<IProps> = props => {
     const product = props.product;
-    
+
     const handleAddClick = () => {
         props.onAddToBasket();
     };
-    
+
     //Important to avoid code errors
     if (!product) {
         return null;
     }
-    
+
     return (
         <React.Fragment>
             <h1>{product.name}</h1>
@@ -38,10 +38,9 @@ const Product: React.FC<IProps> = props => {
                     </ul>
                 </Tabs.Tab>
             </Tabs>
-            
+
             <p className="product-price">
-                {new Intl.NumberFormat("en-US", 
-                    {currency: "USD", style: "currency"}).format(product.price)}
+                {new Intl.NumberFormat("en-US", { currency: "USD", style: "currency" }).format(product.price)}
             </p>
             {!props.inBasket && (
                 <button onClick={handleAddClick}>Add to basket</button>
