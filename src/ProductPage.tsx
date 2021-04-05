@@ -8,8 +8,6 @@ import { addToBasket } from "./BasketActions";
 import { getProduct } from "./ProductsActions";
 import { IApplicationState } from "./Store";
 
-type Props = RouteComponentProps<{ id: string }>;
-
 interface IProps extends RouteComponentProps<{ id: string }> {
     addToBasket: typeof addToBasket;
     getProduct: typeof getProduct;
