@@ -3,20 +3,20 @@ import { RouteComponentProps, Prompt } from "react-router-dom";
 import { IProduct, getProduct } from "./ProductsData";
 import Product from "./Product";
 
-type Props = RouteComponentProps<{id: string}>;
+type Props = RouteComponentProps<{ id: string }>;
 
 interface IState {
     product?: IProduct;
-    added: boolean;
-    loading: boolean;
+    isAdded: boolean;
+    isLoading: boolean;
 }
 
 class ProductPage extends React.Component<Props, IState> {
     public constructor(props: Props) {
         super(props);
         this.state = {
-            added: false,
-            loading: true,
+            isAdded: false,
+            isLoading: true,
         };
     }
 
@@ -24,34 +24,34 @@ class ProductPage extends React.Component<Props, IState> {
         if (this.props.match.params.id) {
             const id: number = parseInt(this.props.match.params.id, 10);
             const product = await getProduct(id);
-            
-            if (product !== null) {
-                this.setState({product, loading: false});
-            }
+
+            if (product !== null) 
+                this.setState({ product, isLoading: false });
         }
     }
 
     private handleAddClick = () => {
-        this.setState({ added: true });
+        this.setState({ isAdded: true });
     };
 
-    private navAwayMessage = () => "Are you sure you leave without buying this product?";
-    
+    private navAwayMessage = () =>
+        "Are you sure you leave without buying this product?";
+
     public render() {
         const product = this.state.product;
-        
+
         return (
             <div className="page-container">
-                <Prompt when={!this.state.added} message={this.navAwayMessage}/>
-                {product || this.state.loading ? 
-                (
-                    <Product
-                        loading={this.state.loading} //Inherited from withLoader HOC
-                        product={product}
-                        inBasket={this.state.added}
-                        onAddToBasket={this.handleAddClick}
-                    />
-                ) : (<p>Product not found!</p>)}
+                <Prompt when={!this.state.isAdded} message={this.navAwayMessage} />
+                {product || this.state.isLoading ?
+                    (
+                        <Product
+                            loading={this.state.isLoading} //Inherited from withLoader HOC
+                            product={product}
+                            inBasket={this.state.isAdded}
+                            onAddToBasket={this.handleAddClick}
+                        />
+                    ) : (<p>Product not found!</p>)}
             </div>
         );
     }
