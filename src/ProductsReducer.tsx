@@ -3,6 +3,7 @@ import { IProductsState, ProductsActions, ProductsActionTypes } from "./Products
 import { products } from './ProductsData';
 
 const initialProductState: IProductsState = {
+    currentProduct: null,
     products: [],
     productsLoading: false
 };
@@ -19,6 +20,13 @@ export const productsReducer: Reducer<IProductsState, ProductsActions> = (state 
             return {
                 ...state,
                 products: action.products,
+                productsLoading: false
+            };
+        }
+        case ProductsActionTypes.GETSINGLE: {
+            return {
+                ...state,
+                currentProduct: action.product,
                 productsLoading: false
             };
         }

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { IApplicationState } from "./Store";
 import { getProducts } from "./ProductsActions";
 import ProductsList from "./ProductsList";
+
 interface IProps extends RouteComponentProps {
     getProducts: typeof getProducts;
     loading: boolean;
