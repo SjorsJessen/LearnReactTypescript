@@ -17,6 +17,11 @@ export const getProduct = async (id: number): Promise<IProduct | null> => {
     return foundProducts.length === 0 ? null : foundProducts[0];
 };
 
+export const getProducts = async (): Promise<IProduct[]> => {
+    await wait(100);
+    return products;
+};
+    
 const wait = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
