@@ -86,8 +86,7 @@ const Product: React.FC<IProps> = props => {
     );
 };
 
-const reducer = (state: ILikeState = initialLikeState, action:
-    LikeActions) => {
+const reducer = (state: ILikeState = initialLikeState, action: LikeActions) => {
     switch (action.type) {
         case LikeActionTypes.LIKE:
             return { ...state, likes: state.likes + 1, lastLike: action.now };
