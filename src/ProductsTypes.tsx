@@ -14,7 +14,7 @@ export interface IProductsLoadingAction {
     type: ProductsActionTypes.LOADING
 }
 
-export type ProductActions = 
+export type ProductsActions = 
     | IProductsGetAllAction
     | IProductsLoadingAction
 
