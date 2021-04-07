@@ -64,6 +64,7 @@ const AdminUser: React.FC<RouteComponentProps<{ id: string }>> = props => {
         const id: number = parseInt(props.match.params.id, 10);
         user = adminUsersData.filter(u => u.id === id)[0];
     } else { return null; }
+    
     return (
         <div>
             <div>

@@ -12,6 +12,7 @@ interface IProps {
 enum LikeActionTypes {
     LIKE = "LIKE"
 }
+
 interface ILikeAction {
     type: LikeActionTypes.LIKE;
     now: Date;
@@ -30,11 +31,7 @@ interface ILikeState {
 }
 
 const Product: React.FC<IProps> = props => {
-    const [{ likes, lastLike }, dispatch]: [
-        ILikeState,
-        (action: ILikeAction) => void
-    ] = React.useReducer(reducer, initialLikeState);
-
+    const [{ likes, lastLike }, dispatch]: [ILikeState, (action: ILikeAction) => void] = React.useReducer(reducer, initialLikeState);
     const product = props.product;
 
     const handleAddClick = () => {
